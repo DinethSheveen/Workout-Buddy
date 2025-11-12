@@ -1,6 +1,8 @@
 // IMPORTS
 import express from "express"
 import "dotenv/config"
+import workoutRouter from "./routes/workoutRoute.js"
+import connectDB from "./config/db.js"
 
 // PORT
 const PORT = process.env.PORT || 3000
@@ -11,7 +13,11 @@ const app = express()
 // MIDDLEWARE CONFIG
 app.use(express.json())
 
+// ROUTER CONFIG
+app.use("/api/workouts",workoutRouter)
+
 // APP LISTEN
-app.listen(PORT,()=>{
+app.listen(PORT,async()=>{
+    await connectDB()
     console.log(`Server running on http://localhost:${PORT}`);
 })
