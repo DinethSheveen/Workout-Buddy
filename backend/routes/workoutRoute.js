@@ -10,7 +10,7 @@ workoutRouter.get("/:id",getOneWorkout)
 // POST - CREATE A WORKOUT
 workoutRouter.post("/",createWorkout)
 // PUT - UPDATE A WORKOUT
-workoutRouter.post("/:id",updateWorkout)
+workoutRouter.put("/:id",updateWorkout)
 // DELETE - DELETE A WORKOUT
 workoutRouter.delete("/:id",deleteWorkout)
 
