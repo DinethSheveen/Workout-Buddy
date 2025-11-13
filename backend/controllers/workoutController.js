@@ -1,3 +1,4 @@
+import { Types } from "mongoose"
 import workoutModel from "../models/workoutModel.js"
 
 // GET WORKOUT BY ID
@@ -6,6 +7,10 @@ export const getOneWorkout = async(req,res)=>{
     
     if(!workoutId){
         return res.status(400).send("Missing workout id")
+    }
+
+    if(!Types.ObjectId.isValid(workoutId)){
+        return res.status(400).send("No workout with this id")
     }
 
     try {
@@ -54,6 +59,10 @@ export const updateWorkout = async(req,res)=>{
     if(!title || !reps || !load){
         return res.status(400).send("Please provide all the required fields")
     }
+
+    if(!Types.ObjectId.isValid(workoutId)){
+        return res.status(400).send("No workout with this id")
+    }
     
     try {
         const workout = await workoutModel.findByIdAndUpdate({_id:workoutId},{title,reps,load})
@@ -71,6 +80,10 @@ export const deleteWorkout = async(req,res)=>{
 
     if(!workoutId){
         return res.status(400).send("Missing workout id")
+    }
+
+    if(!Types.ObjectId.isValid(workoutId)){
+        return res.status(400).send("No workout with this id")
     }
 
     try {
