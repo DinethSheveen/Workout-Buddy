@@ -5,12 +5,42 @@ function WorkoutForm() {
     const [title, setTitle] = useState("")
     const [reps, setReps] = useState("")
     const [load, setLoad] = useState("")
+    const [error, setError] = useState(null)
 
+    const handleSubmit = async(e)=>{
+        e.preventDefault()
+
+        const workout = {title,reps,load}
+
+        // POST REQUEST
+        const response = await fetch("http://localhost:3000/api/workouts",
+            {
+                method : "POST",
+                body : JSON.stringify(workout),
+                headers : {
+                    "Content-Type" : "application/json"
+                }
+            }   
+        )
+
+        const json = await response.json()
+
+        if(!response.ok){
+            setError(json)
+        }
+        else{
+            setError(null)
+            console.log("New workout added");
+            setTitle("")   
+            setReps("")   
+            setLoad("")   
+        }
+    }
     
 
   return (
-    <div className='w-[30vw]'>
-        <form className='form flex flex-col gap-2 justify-around h-full border-2 rounded-[10px] p-2'>
+    <div className='w-[30vw] max-h-100'>
+        <form className='form flex flex-col gap-2 justify-around h-full shadow-2xl shadow-gray-500 rounded-[10px] bg-gray-300 py-4 px-2' onSubmit={handleSubmit}>
             {/* WORKOUT */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="title" className='font-bold'>Title</label>
@@ -27,8 +57,9 @@ function WorkoutForm() {
                 <input type="text" id='load' placeholder='Load in kg' className='text-white bg-gray-400 p-2 rounded-[5px]' value={load} onChange={(e)=>{setLoad(e.target.value)}}/>
             </div>
 
-            <button className='bg-cyan-800 text-white mt-2 p-2'>Add Workout</button>
+            <button className='bg-cyan-800 text-white mt-2 p-2 cursor-pointer hover:bg-cyan-700 active:bg-cyan-600 transition-all'>Add Workout</button>
         </form>
+        {error && error? <div className='bg-red-200 text-red-600 py-2 px-4 rounded-[5px]'>{error}</div>:""}
     </div>
   )
 }
