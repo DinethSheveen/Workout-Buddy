@@ -41,8 +41,22 @@ export const createWorkout = async(req,res)=>{
         return res.status(400).json("Please provide all the required fields")
     }
 
+    // REPS VALIDATION
+    const parsedRep = parseInt(reps)
+
+    if(isNaN(parsedRep)){
+        return res.status(400).json("Reps should be a numberic value")
+    }
+
+    // LOAD VALIDATION
+    const parsedLoad = parseInt(load)
+
+    if(isNaN(parsedLoad)){
+        return res.status(400).json("Load should be a numeric value")
+    }
+
     try {
-        const workout = await workoutModel.create({title,reps,load})
+        const workout = await workoutModel.create({title,reps : parsedRep,load:parsedLoad})
 
         res.status(201).json(workout)
 
