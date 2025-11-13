@@ -6,6 +6,7 @@ function Workout({workout}) {
         <p className='text-cyan-800 text-2xl'>{workout.title}</p>
         <p className='text-white'>Reps : {workout.reps}</p>
         <p className='text-white'>Load (kg) : {workout.load}</p>
+        <p className='text-white'>{workout.createdAt}</p>
     </div>
   )
 }
