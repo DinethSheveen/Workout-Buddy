@@ -67,5 +67,16 @@ export const updateWorkout = async(req,res)=>{
 
 // DELETE WORKOUT BY ID
 export const deleteWorkout = async(req,res)=>{
-    
+    const workoutId = req.params.id
+
+    if(!workoutId){
+        return res.status(400).send("Missing workout id")
+    }
+
+    try {
+        const workout = await workoutModel.findByIdAndDelete({_id:workoutId})
+        res.status(200).json({msg : "Workout deleted",data:workout})
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
 }
