@@ -67,7 +67,7 @@ export const updateWorkout = async(req,res)=>{
     try {
         const workout = await workoutModel.findByIdAndUpdate({_id:workoutId},{title,reps,load})
 
-        res.status(201).json({msg : "Workout updated"})
+        res.status(201).json("Workout updated")
 
     } catch (error) {
         res.status(500).json(error.message)
@@ -88,7 +88,7 @@ export const deleteWorkout = async(req,res)=>{
 
     try {
         const workout = await workoutModel.findByIdAndDelete({_id:workoutId})
-        res.status(200).json(workout)
+        res.status(200).json("Workout Deleted")
     } catch (error) {
         res.status(500).json(error.message)
     }
