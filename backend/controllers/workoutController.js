@@ -6,11 +6,11 @@ export const getOneWorkout = async(req,res)=>{
     const workoutId = req.params.id
     
     if(!workoutId){
-        return res.status(400).send("Missing workout id")
+        return res.status(400).json("Missing workout id")
     }
 
     if(!Types.ObjectId.isValid(workoutId)){
-        return res.status(400).send("No workout with this id")
+        return res.status(400).json("No workout with this id")
     }
 
     try {
@@ -18,7 +18,7 @@ export const getOneWorkout = async(req,res)=>{
 
         res.status(200).json({msg : "Workout retreived",data:workout})
     } catch (error) {
-        res.status(500).send(error.message)
+        res.status(500).json(error.message)
     }
 }
 
@@ -27,9 +27,9 @@ export const getAllWorkouts = async(_,res)=>{
     try {
         const workout = await workoutModel.find()
 
-        res.status(200).send(workout)
+        res.status(200).json(workout)
     } catch (error) {
-        res.status(500).send(error.message)
+        res.status(500).json(error.message)
     }
 }
 
@@ -38,16 +38,16 @@ export const createWorkout = async(req,res)=>{
     const {title,reps,load} = req.body
 
     if(!title || !reps || !load){
-        return res.status(400).send("Please provide all the required fields")
+        return res.status(400).json("Please provide all the required fields")
     }
 
     try {
         const workout = await workoutModel.create({title,reps,load})
 
-        res.status(201).send(workout)
+        res.status(201).json(workout)
 
     } catch (error) {
-        res.status(500).send(error.message)
+        res.status(500).json(error.message)
     }
 }
 
@@ -57,11 +57,11 @@ export const updateWorkout = async(req,res)=>{
     const workoutId = req.params.id
 
     if(!title || !reps || !load){
-        return res.status(400).send("Please provide all the required fields")
+        return res.status(400).json("Please provide all the required fields")
     }
 
     if(!Types.ObjectId.isValid(workoutId)){
-        return res.status(400).send("No workout with this id")
+        return res.status(400).json("No workout with this id")
     }
     
     try {
@@ -70,7 +70,7 @@ export const updateWorkout = async(req,res)=>{
         res.status(201).json({msg : "Workout updated"})
 
     } catch (error) {
-        res.status(500).send(error.message)
+        res.status(500).json(error.message)
     }
 }
 
@@ -79,17 +79,17 @@ export const deleteWorkout = async(req,res)=>{
     const workoutId = req.params.id
 
     if(!workoutId){
-        return res.status(400).send("Missing workout id")
+        return res.status(400).json("Missing workout id")
     }
 
     if(!Types.ObjectId.isValid(workoutId)){
-        return res.status(400).send("No workout with this id")
+        return res.status(400).json("No workout with this id")
     }
 
     try {
         const workout = await workoutModel.findByIdAndDelete({_id:workoutId})
-        res.status(200).send(workout)
+        res.status(200).json(workout)
     } catch (error) {
-        res.status(500).send(error.message)
+        res.status(500).json(error.message)
     }
 }
