@@ -27,7 +27,7 @@ export const getAllWorkouts = async(_,res)=>{
     try {
         const workout = await workoutModel.find()
 
-        res.status(200).json({msg : "All workouts retreived",data:workout})
+        res.status(200).send(workout)
     } catch (error) {
         res.status(500).send(error.message)
     }
@@ -44,7 +44,7 @@ export const createWorkout = async(req,res)=>{
     try {
         const workout = await workoutModel.create({title,reps,load})
 
-        res.status(201).json({msg : "Workout created",data : workout})
+        res.status(201).send(workout)
 
     } catch (error) {
         res.status(500).send(error.message)
@@ -88,7 +88,7 @@ export const deleteWorkout = async(req,res)=>{
 
     try {
         const workout = await workoutModel.findByIdAndDelete({_id:workoutId})
-        res.status(200).json({msg : "Workout deleted",data:workout})
+        res.status(200).send(workout)
     } catch (error) {
         res.status(500).send(error.message)
     }
