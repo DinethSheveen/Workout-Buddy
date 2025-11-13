@@ -1,6 +1,10 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
+import "dayjs"
+import dayjs from "dayjs";
 
 function Workout({workout}) {
+
+  const formattedDate = dayjs(workout.createdAt).format("DD-MMMM-YYYY")
 
   const deleteWorkout = async()=>{
     const response = await fetch("http://localhost:3000/api/workouts/"+workout._id,
@@ -28,7 +32,7 @@ function Workout({workout}) {
         </div>
         <p className='text-white'>Reps : {workout.reps}</p>
         <p className='text-white'>Load (kg) : {workout.load}</p>
-        <p className='text-white'>{workout.createdAt}</p>
+        <p className='text-white font-normal italic'>{formattedDate}</p>
     </div>
   )
 }
