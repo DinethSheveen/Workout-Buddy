@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Workout from '../components/Workout'
+import WorkoutForm from '../components/WorkoutForm'
 
 function Home() {
 
@@ -16,28 +18,24 @@ function Home() {
                     const data = await response.json()
                     setWorkout(data);
                 }
-                
-
             } catch (error) {
                 console.log(error.message);
                 
             }
         }
-        
         fetchWorkouts()
     },[])
 
   return (
-    <div>
-        {workouts && workouts.map((workout)=>{
-            return(
-                <div key={workout._id}>
-                    <p>Workout - {workout.title}</p>
-                    <p>Reps : {workout.reps}</p>
-                    <p>Load : {workout.load}</p>
-                </div>
-            )
-        })}
+    <div className='flex justify-between gap-5 px-4 pt-25'>
+        <div className='flex-1'>
+            {workouts && workouts.map((workout)=>{
+                return(
+                    <Workout key={workout._id} workout={workout}/>
+                )
+            })}
+        </div>
+        <WorkoutForm/>
     </div>
   )
 }
