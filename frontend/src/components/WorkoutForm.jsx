@@ -59,7 +59,7 @@ function WorkoutForm() {
 
             <button className='bg-cyan-800 text-white mt-2 p-2 cursor-pointer hover:bg-cyan-700 active:bg-cyan-600 transition-all'>Add Workout</button>
         </form>
-        {error && error? <div className='bg-red-200 text-red-600 py-2 px-4 rounded-[5px]'>{error}</div>:""}
+        {error && error? <div className='bg-red-200 border-red-600 border-2 text-red-600 font-bold py-2 px-4 rounded-[5px]'>{error}!</div>:""}
     </div>
   )
 }
