@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect,useState } from 'react'
 
 function WorkoutForm() {
 
@@ -6,6 +6,7 @@ function WorkoutForm() {
     const [reps, setReps] = useState("")
     const [load, setLoad] = useState("")
     const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null)
 
     const handleSubmit = async(e)=>{
         e.preventDefault()
@@ -29,14 +30,25 @@ function WorkoutForm() {
             setError(json)
         }
         else{
+            setSuccess(json)
             setError(null)
             console.log("New workout added");
             setTitle("")   
             setReps("")   
             setLoad("")   
         }
+
     }
-    
+
+    useEffect(()=>{
+        if(success){
+            const timeoutId = setTimeout(()=>{
+                            setSuccess(null)
+                        },3000)
+
+            return () => clearTimeout(timeoutId)
+        }
+    },[success])
 
   return (
     <div className='w-[80vw] mx-auto mb-10 max-h-100 md:w-[40vw]'>
@@ -60,6 +72,7 @@ function WorkoutForm() {
             <button className='bg-cyan-800 text-white mt-2 p-2 cursor-pointer hover:bg-cyan-700 active:bg-cyan-600 transition-all'>Add Workout</button>
         </form>
         {error && error? <div className='bg-red-200 border-red-600 border-2 text-red-600 font-bold py-2 px-4 rounded-[5px]'>{error}!</div>:""}
+        {success && success? <div className='bg-green-200 border-green-600 border-2 text-green-600 font-bold py-2 px-4 rounded-[5px]'>{success}!</div>:""}
     </div>
   )
 }
