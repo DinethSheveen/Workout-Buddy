@@ -39,11 +39,11 @@ function WorkoutForm() {
     
 
   return (
-    <div className='w-[30vw] max-h-100'>
+    <div className='w-[80vw] mx-auto mb-10 max-h-100 md:w-[40vw]'>
         <form className='form flex flex-col gap-2 justify-around h-full shadow-2xl shadow-gray-500 rounded-[10px] bg-gray-300 py-4 px-2' onSubmit={handleSubmit}>
             {/* WORKOUT */}
             <div className='flex flex-col gap-2'>
-                <label htmlFor="title" className='font-bold'>Title</label>
+                <label htmlFor="title" className='font-bold'>Workout</label>
                 <input type="text" id='title' placeholder='Workout title' className='text-white bg-gray-400 p-2 rounded-[5px]' value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
             </div>
             {/* REPS */}

@@ -21,7 +21,7 @@ function Workout({workout}) {
   }
 
   return (
-    <div className='bg-gray-400 mb-6 p-4 font-bold rounded-[10px] max-w-[70vw]'>
+    <div className='w-full bg-gray-400 mb-6 p-4 font-bold rounded-[10px] md:max-w-[60vw]'>
         <div className='flex justify-between items-center'>
           <p className='text-cyan-800 text-2xl'>{workout.title}</p>
           <RiDeleteBin5Line className="text-red-700 text-2xl cursor-pointer" onClick={deleteWorkout}/>
