@@ -58,7 +58,7 @@ export const createWorkout = async(req,res)=>{
     try {
         const workout = await workoutModel.create({title,reps : parsedRep,load:parsedLoad})
 
-        res.status(201).json(workout)
+        res.status(201).json("Workout created successfully")
 
     } catch (error) {
         res.status(500).json(error.message)
