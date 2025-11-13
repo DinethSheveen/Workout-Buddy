@@ -20,11 +20,10 @@ function Home() {
                 }
             } catch (error) {
                 console.log(error.message);
-                
             }
         }
         fetchWorkouts()
-    },[])
+    },[workouts])
 
   return (
     <div className='flex justify-between gap-5 px-4 pt-25'>
