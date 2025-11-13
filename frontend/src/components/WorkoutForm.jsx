@@ -44,7 +44,7 @@ function WorkoutForm() {
             {/* WORKOUT */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="title" className='font-bold'>Workout</label>
-                <input type="text" id='title' placeholder='Workout title' className='text-white bg-gray-400 p-2 rounded-[5px]' value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
+                <input type="text" id='title' placeholder='Workout type' className='text-white bg-gray-400 p-2 rounded-[5px]' value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
             </div>
             {/* REPS */}
             <div className='flex flex-col gap-2'>

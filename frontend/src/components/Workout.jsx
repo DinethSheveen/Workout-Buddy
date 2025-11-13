@@ -15,7 +15,7 @@ function Workout({workout}) {
       console.log(json);
     }
     else{
-      console.log("JSON"+json);
+      console.log(json);
     }
     
   }
