@@ -1,10 +1,13 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
-import "dayjs"
+import "dayjs" ;
+import relativeTime from "dayjs/plugin/relativeTime" 
 import dayjs from "dayjs";
 
 function Workout({workout}) {
 
-  const formattedDate = dayjs(workout.createdAt).format("DD-MMMM-YYYY")
+  dayjs.extend(relativeTime)
+
+  const formattedDate = dayjs(workout.createdAt).fromNow()
 
   const deleteWorkout = async()=>{
     const response = await fetch("http://localhost:3000/api/workouts/"+workout._id,
