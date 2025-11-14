@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const workoutSchema = mongoose.Schema({
     title : {
@@ -12,6 +12,11 @@ const workoutSchema = mongoose.Schema({
     load : {
         type : Number,
         required : true 
+    },
+    user : {
+        type : Types.ObjectId,
+        ref : "user",
+        required : true
     }
 },{timestamps:true})
 
