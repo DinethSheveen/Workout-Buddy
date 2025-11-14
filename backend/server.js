@@ -4,6 +4,7 @@ import cors from "cors"
 import "dotenv/config"
 import workoutRouter from "./routes/workoutRoute.js"
 import connectDB from "./config/db.js"
+import userRouter from "./routes/userRoute.js"
 
 // PORT
 const PORT = process.env.PORT || 3000
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use(cors())
 
 // ROUTER CONFIG
+app.use("/api/users/",userRouter)
 app.use("/api/workouts",workoutRouter)
 
 // APP LISTEN
