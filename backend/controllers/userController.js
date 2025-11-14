@@ -1,5 +1,6 @@
 import userModel from "../models/userModel.js"
 import bcrypt from "bcrypt"
+import validator from "validator"
 
 // REGISTER
 export const signUp = async(req,res)=>{
@@ -20,6 +21,16 @@ export const signUp = async(req,res)=>{
         const existingUsername =  await userModel.find({username})
         if(existingUsername.length > 0){
             return res.status(400).json("This username is unavailable. Try another")
+        }
+
+        // EMAIL VALIDATION
+        if(!validator.isEmail(email)){
+            return res.status(400).json("Please provide a valid email")
+        }
+
+        // PASSWORD VALIDATION
+        if(!validator.isStrongPassword(password)){
+            return res.status(400).json("Think of a stonger password")
         }
 
         // HASHING THE PASSWORD
