@@ -1,7 +1,9 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { BiEdit } from "react-icons/bi";
 import "dayjs" ;
 import relativeTime from "dayjs/plugin/relativeTime" 
 import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 
 function Workout({workout}) {
 
@@ -31,7 +33,10 @@ function Workout({workout}) {
     <div className='w-full bg-gray-400 mb-6 p-4 font-bold rounded-[10px] md:max-w-[60vw]'>
         <div className='flex justify-between items-center'>
           <p className='text-cyan-800 text-2xl'>{workout.title}</p>
-          <RiDeleteBin5Line className="text-red-700 text-2xl cursor-pointer" onClick={deleteWorkout}/>
+          <div className="flex gap-2 text-2xl">
+            <Link to={`update-workout/${workout._id}`}><BiEdit className="cursor-pointer text-cyan-600"/></Link>
+            <RiDeleteBin5Line className="text-red-700 cursor-pointer" onClick={deleteWorkout}/>
+          </div>
         </div>
         <p className='text-white'>Reps : {workout.reps}</p>
         <p className='text-white'>Load (kg) : {workout.load}</p>
