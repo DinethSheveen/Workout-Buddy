@@ -32,7 +32,7 @@ function Login(props) {
         setSuccess(response.data.message)
         
         if(response.data.login){
-          props.setAuthorizedUser(true)
+          props.setAuthorizedUser(prevUser => ({...prevUser,login:true,user:response.data.username}))
         }
 
         setTimeout(()=>{
