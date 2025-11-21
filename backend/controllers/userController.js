@@ -8,30 +8,30 @@ export const signUp = async(req,res)=>{
     const {name,username,password,email}  = req.body
 
     if(!name || !username || !password || !email){
-        return res.status(400).json({message:"Please fill in all the fields", success : false})
+        return res.status(400).json({message:"Please fill in all the fields", register : false})
     }
 
     try {
         // EXISTING EMAIL
         const existingEmail =  await userModel.find({email})
         if(existingEmail.length > 0){
-            return res.status(400).json({message:"Our records show that this email has already been registered", success : false})
+            return res.status(400).json({message:"Our records show that this email has already been registered", register : false})
         }
 
         // EXISTING EMAIL
         const existingUsername =  await userModel.find({username})
         if(existingUsername.length > 0){
-            return res.status(400).json({message : "This username is unavailable. Try another", success : false})
+            return res.status(400).json({message : "This username is unavailable. Try another", register : false})
         }
 
         // EMAIL VALIDATION
         if(!validator.isEmail(email)){
-            return res.status(400).json({message : "Please provide a valid email", success : false})
+            return res.status(400).json({message : "Please provide a valid email", register : false})
         }
 
         // PASSWORD VALIDATION
         if(!validator.isStrongPassword(password)){
-            return res.status(400).json({message : "Think of a stonger password", success : false})
+            return res.status(400).json({message : "Think of a stonger password", register : false})
         }
 
         // HASHING THE PASSWORD
@@ -40,7 +40,7 @@ export const signUp = async(req,res)=>{
 
         const newUser = await userModel.create({name,username,email,password:hashPassword})
 
-        res.status(201).json({message : "Account created successfully", success : true})
+        res.status(201).json({message : "Account created successfully", register : true})
 
     } catch (error) {
         res.status(500).json(error.message)
@@ -53,27 +53,27 @@ export const signIn = async(req,res)=>{
     const {username,password} = req.body
 
     if(!username || !password){
-        return res.status(400).json({message: "Please fill in all the required fields",success:false})
+        return res.status(400).json({message: "Please fill in all the required fields",login:false})
     }
 
     try {
         const usernameMatch = await userModel.findOne({username})
         
         if(!usernameMatch){
-            return res.status(400).json({message: "Incorrect username",success:false})
+            return res.status(400).json({message: "Incorrect username",login:false})
         }
 
         // PASSWORD UNHASHING
         const passwordMatch = await bcrypt.compare(password,usernameMatch.password)
 
         if(!passwordMatch){
-            return res.status(400).json({message: "Incorrect password",success:false})
+            return res.status(400).json({message: "Incorrect password",login:false})
         }
 
         // CREATE TOKEN IF THE USER CREDENTIALS ARE VALID
         const token = generateToken(usernameMatch.username)
 
-        res.status(200).json({msg : "Successfull login",token,success:true})
+        res.status(200).json({message : "Successfull login",token,login:true,username})
         
     } catch (error) {
         res.status(500).json(error.message)
