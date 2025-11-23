@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom"
 
-function Login({setAuthorizedUser}) {
+function Login({setAuthorizedUser,setLoggedIn}) {
 
   const [fields, setFields] = useState({username:"",password:""})
   const [error, setError] = useState("")
@@ -34,7 +34,9 @@ function Login({setAuthorizedUser}) {
         if(response.data.login){
           setTimeout(()=>{
             localStorage.setItem("user",JSON.stringify(response.data.user))
+            localStorage.setItem("token",JSON.stringify(response.data.token))
             setAuthorizedUser(localStorage.getItem("user"))
+            setLoggedIn(true)
             // console.log(JSON.parse(localStorage.getItem("user")).username);
             navigate("/")
           },3000)

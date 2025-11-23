@@ -12,13 +12,17 @@ function App() {
   const user = localStorage.getItem("user") || null
 
   const [authorizedUser, setAuthorizedUser] = useState(user)
+  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem("token"))
+
+  // localStorage.removeItem("user")
+  
 
   return (
     <>
       <BrowserRouter>
-        <Navbar authorizedUser={authorizedUser}/>
+        <Navbar authorizedUser={authorizedUser} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
         <Routes>
-          <Route path="/login" element={<Login setAuthorizedUser={setAuthorizedUser}/>}/>
+          <Route path="/login" element={<Login setAuthorizedUser={setAuthorizedUser} setLoggedIn={setLoggedIn}/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route element={<Protected authorizedUser={authorizedUser}/>}>
             <Route path="/" element={<Home authorizedUser={authorizedUser}/>}/>
