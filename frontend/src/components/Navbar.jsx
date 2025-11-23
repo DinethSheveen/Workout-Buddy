@@ -2,13 +2,20 @@ import { Link } from "react-router-dom"
 
 function Navbar({authorizedUser}) {
   
-  const capitalize = (username)=>{
-    const firstLetter = username.charAt(0)
-    const name = firstLetter.toUpperCase() + authorizedUser.slice(1)
-    return name
-  }
+  let displayName;
 
-  const formatUsername = capitalize(authorizedUser)
+  if(authorizedUser){
+    const username = JSON.parse(authorizedUser).username
+    
+    const formatUsername = (username)=>{
+      const firsLetter = username.charAt(0)
+      const formattedName = firsLetter.toUpperCase() + username.slice(1)
+      return formattedName 
+    }
+    displayName = formatUsername(username)
+  }
+  
+  
   
 
   return (
@@ -21,7 +28,7 @@ function Navbar({authorizedUser}) {
 
           {/* RIGHT SECTION */}
           <div>
-            <p>Hello {formatUsername}!</p>
+            <p>{authorizedUser && `Hello ${displayName}!`}</p>
           </div>
         
         </div>
