@@ -9,7 +9,7 @@ function Workout({workout}) {
 
   dayjs.extend(relativeTime)
 
-  const formattedDate = dayjs(workout.createdAt).fromNow()
+  const formattedDate = dayjs(workout.updatedAt).fromNow()
 
   const deleteWorkout = async()=>{
     const response = await fetch("http://localhost:3000/api/workouts/"+workout._id,
