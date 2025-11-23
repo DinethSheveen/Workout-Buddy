@@ -33,8 +33,9 @@ function Login({setAuthorizedUser}) {
 
         if(response.data.login){
           setTimeout(()=>{
-            localStorage.setItem("user",response.data.user.name)
+            localStorage.setItem("user",JSON.stringify(response.data.user))
             setAuthorizedUser(localStorage.getItem("user"))
+            // console.log(JSON.parse(localStorage.getItem("user")).username);
             navigate("/")
           },3000)
         }
