@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom"
 
-function Login(props) {
+function Login({setAuthorizedUser}) {
 
   const [fields, setFields] = useState({username:"",password:""})
   const [error, setError] = useState("")
@@ -29,17 +29,15 @@ function Login(props) {
 
         console.log(response);
         setError(null)
-        setSuccess(response.data.message)
-        
+        setSuccess(response.data.message)        
+
         if(response.data.login){
-          props.setAuthorizedUser(prevUser => ({...prevUser,login:true,user:response.data.username}))
+          setTimeout(()=>{
+            localStorage.setItem("user",response.data.user.name)
+            setAuthorizedUser(localStorage.getItem("user"))
+            navigate("/")
+          },3000)
         }
-
-        setTimeout(()=>{
-          navigate("/")
-        },3000)
-
-
         
       } catch (error) {
         console.log(error);

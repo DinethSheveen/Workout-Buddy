@@ -1,7 +1,7 @@
 import { Outlet,Navigate } from "react-router-dom"
 
-function Protected(props) {
-    const authorizedUser = props.authorizedUser
+function Protected({authorizedUser}) {
+
   return (
     <div>
         {authorizedUser ? <Outlet/> : <Navigate to={"/login"}/>}

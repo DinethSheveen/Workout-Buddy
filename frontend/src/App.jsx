@@ -9,7 +9,9 @@ import { useState } from "react"
 
 function App() {
 
-  const [authorizedUser, setAuthorizedUser] = useState({login:false,user:""})
+  const user = localStorage.getItem("user") || null
+
+  const [authorizedUser, setAuthorizedUser] = useState(user)
 
   return (
     <>
