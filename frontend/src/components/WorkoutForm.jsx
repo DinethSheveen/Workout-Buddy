@@ -11,7 +11,13 @@ function WorkoutForm() {
     const handleSubmit = async(e)=>{
         e.preventDefault()
 
-        const workout = {title,reps,load}
+        const user = JSON.parse(localStorage.getItem("user"))
+
+        const userId = user._id
+        console.log(userId);
+        
+
+        const workout = {title,reps,load,user:userId}
 
         // POST REQUEST
         const response = await fetch("http://localhost:3000/api/workouts",
