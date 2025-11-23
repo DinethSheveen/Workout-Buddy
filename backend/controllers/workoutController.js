@@ -1,5 +1,6 @@
 import { Types } from "mongoose"
 import workoutModel from "../models/workoutModel.js"
+import userModel from "../models/userModel.js"
 
 // GET WORKOUT BY ID
 export const getOneWorkout = async(req,res)=>{
@@ -35,7 +36,7 @@ export const getAllWorkouts = async(_,res)=>{
 
 // CREATE A WORKOUT 
 export const createWorkout = async(req,res)=>{
-    const {title,reps,load} = req.body
+    const {title,reps,load,user} = req.body
 
     if(!title || !reps || !load){
         return res.status(400).json("Please provide all the required fields")
@@ -56,7 +57,12 @@ export const createWorkout = async(req,res)=>{
     }
 
     try {
-        const workout = await workoutModel.create({title,reps : parsedRep,load:parsedLoad})
+        const workout = await workoutModel.create({title,reps : parsedRep,load:parsedLoad,user})
+
+        const loggedUser = await userModel.findById(user)
+        
+        await loggedUser.workouts.push(workout._id);
+        await loggedUser.save()
 
         res.status(201).json("Workout created successfully")
 
