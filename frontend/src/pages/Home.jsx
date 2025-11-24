@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Workout from '../components/Workout'
 import WorkoutForm from '../components/WorkoutForm'
 
@@ -9,14 +9,16 @@ function Home() {
     useEffect(()=>{
         const fetchWorkouts = async()=>{
             try {
-                const response = await fetch("http://localhost:3000/api/workouts")
-                
+                const id = JSON.parse(localStorage.getItem("user"))._id
+
+                const response = await fetch(`http://localhost:3000/api/workouts/${id}`)
+
                 if(!response.ok){
                     throw new Error("Couldn't fetch resources")
                 }
                 else{
                     const data = await response.json()
-                    setWorkout(data);
+                    setWorkout(data);                    
                 }
             } catch (error) {
                 console.log(error.message);

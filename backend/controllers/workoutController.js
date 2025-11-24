@@ -24,9 +24,11 @@ export const getOneWorkout = async(req,res)=>{
 }
 
 // GET ALL WORKOUTS 
-export const getAllWorkouts = async(_,res)=>{
+export const getAllWorkouts = async(req,res)=>{
     try {
-        const workout = await workoutModel.find()
+        const userId = req.params.id
+
+        const workout = await workoutModel.find({user:userId})
 
         res.status(200).json(workout)
     } catch (error) {

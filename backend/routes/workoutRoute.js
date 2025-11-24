@@ -4,7 +4,7 @@ import { getAllWorkouts, getOneWorkout, createWorkout, updateWorkout, deleteWork
 const workoutRouter = Router()
 
 // GET - RETREIVE ALL WORKOUT
-workoutRouter.get("/",getAllWorkouts)
+workoutRouter.get("/:id",getAllWorkouts)
 // GET - RETREIVE A WORKOUT
 workoutRouter.get("/:id",getOneWorkout)
 // POST - CREATE A WORKOUT
