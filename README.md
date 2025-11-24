@@ -20,7 +20,7 @@
 ### **Frontend**
 - React (Vite)
 - JavaScript / JSX
-- Tailiwind CSS
+- Tailwind CSS
 
 ### **Backend**
 - Node.js
