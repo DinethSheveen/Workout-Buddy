@@ -50,7 +50,7 @@ function UpdateWorkout() {
                 console.log(response);
 
                 setTimeout(()=>{
-                    navigate("/")
+                    navigate("/dashboard")
                 },3000)
                 
             } catch (error) {

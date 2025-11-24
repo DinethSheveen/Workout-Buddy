@@ -38,7 +38,7 @@ function Login({setAuthorizedUser,setLoggedIn}) {
             setAuthorizedUser(localStorage.getItem("user"))
             setLoggedIn(true)
             // console.log(JSON.parse(localStorage.getItem("user")).username);
-            navigate("/")
+            navigate("/dashboard")
           },3000)
         }
         
@@ -64,7 +64,7 @@ function Login({setAuthorizedUser,setLoggedIn}) {
             {/* PASSWORD */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="reps" className='font-bold'>Password</label>
-                <input type="text" id='reps' placeholder='Password...' className='text-white bg-gray-400 p-2 rounded-[5px]' value={fields.password} onChange={handlePassword}/>
+                <input type="password" id='reps' placeholder='Password...' className='text-white bg-gray-400 p-2 rounded-[5px]' value={fields.password} onChange={handlePassword}/>
             </div>
 
             <button className='bg-cyan-800 text-white mt-2 p-2 cursor-pointer hover:bg-cyan-700 active:bg-cyan-600 transition-all'>Login</button>

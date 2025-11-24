@@ -34,7 +34,7 @@ function Workout({workout}) {
         <div className='flex justify-between items-center'>
           <p className='text-gray-800 text-2xl'>{workout.title}</p>
           <div className="flex gap-2 text-2xl">
-            <Link to={`update-workout/${workout._id}`}><BiEdit className="cursor-pointer text-gray-700"/></Link>
+            <Link to={`/update-workout/${workout._id}`}><BiEdit className="cursor-pointer text-gray-700"/></Link>
             <RiDeleteBin5Line className="text-red-700 cursor-pointer" onClick={deleteWorkout}/>
           </div>
         </div>
