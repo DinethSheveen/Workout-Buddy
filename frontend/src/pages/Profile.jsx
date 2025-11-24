@@ -37,11 +37,11 @@ function Profile({setLoggedIn}) {
                 <p>User Id : {userId}</p>
                 <div className="flex justify-between items-center">
                     <p>Email : {email}</p>
-                    <p className="text-cyan-700 hover:text-cyan-500 cursor-pointer">Change Email</p>
+                    <Link to={"/update-profile"} className="text-cyan-700 hover:text-cyan-500 cursor-pointer">Change Email</Link>
                 </div>
                 <div className="flex justify-between items-center">
                     <p>Username : {username}</p>
-                    <p className="text-cyan-700 hover:text-cyan-500 cursor-pointer">Change Username</p>
+                    <Link to={"/update-profile"} className="text-cyan-700 hover:text-cyan-500 cursor-pointer">Change Username</Link>
                 </div>
                 <div className="flex justify-between items-center">
                     <p>Workout Count : {workouts.length}</p>
