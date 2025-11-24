@@ -27,6 +27,9 @@
 - Express.js
 - REST API structure
 
+### **Database**
+- MongoDB
+
 ### **General**
 - Git version control
 - Modular folder structure
