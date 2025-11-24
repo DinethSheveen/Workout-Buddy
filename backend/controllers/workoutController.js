@@ -85,7 +85,19 @@ export const updateWorkout = async(req,res)=>{
     if(!Types.ObjectId.isValid(workoutId)){
         return res.status(400).json("No workout with this id")
     }
+
+    const parsedRep = parseInt(reps) 
+
+    if(isNaN(parsedRep)){
+        return res.status(400).json("Reps should be a number")
+    }
+
+    const parsedLoad = parseInt(load)
     
+    if(isNaN(parsedLoad)){
+        return res.status(400).json("Load should be a number")
+    }
+
     try {
         const workout = await workoutModel.findByIdAndUpdate({_id:workoutId},{title,reps,load})
 
