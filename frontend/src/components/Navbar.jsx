@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
 
@@ -30,13 +30,19 @@ function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
     navigate("/login")
   }
 
+  const handleNavigate = ()=>{
+    if(loggedIn){
+      navigate("/")
+    }
+  }
+
   return (
     // NAVBAR
     <div className="navbar">
         {/* FLEX CONTAINER */}
-        <div className="flex justify-between gap-5 items-center text-white bg-cyan-800 font-bold fixed w-full px-3 py-5 md:px-10">
+        <div className="flex justify-between gap-5 items-center text-white bg-gray-800 font-bold fixed w-full px-3 py-5 md:px-10">
           {/* LEFT SECTION */}
-          <Link to={"/"} className="text-3xl">Workout Buddy</Link>
+          <p className="text-3xl cursor-pointer" onClick={handleNavigate}>Workout Buddy</p>
 
           {/* RIGHT SECTION */}
           
@@ -44,11 +50,11 @@ function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
             {
               loggedIn?
               <div className="flex flex-col gap-2">
-                <p className="text-transparent bg-linear-to-r from-cyan-100 to-cyan-500 bg-clip-text"> Hello {name}</p>
+                <p className="text-transparent bg-linear-to-r from-gray-300 to-gray-400 bg-clip-text"> Hello {name}</p>
                 <p className="border border-cyan-400 text-cyan-400 text-center cursor-pointer px-2 py-1 hover:text-cyan-300 hover:border-cyan-300 active:text-cyan-200 active:border-cyan-200" onClick={handleLogout}>Log Out</p> 
               </div>
               :
-            <p className="text-transparent bg-linear-to-r from-cyan-100 to-cyan-500 bg-clip-text">Create your own workout space</p>
+            <p className="text-transparent bg-linear-to-r from-gray-300 to-gray-400 bg-clip-text">Create your own workout space</p>
             } 
           </div>
         </div>
