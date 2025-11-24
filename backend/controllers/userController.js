@@ -73,7 +73,7 @@ export const signIn = async(req,res)=>{
         // CREATE TOKEN IF THE USER CREDENTIALS ARE VALID
         const token = generateToken(usernameMatch.username)
 
-        res.status(200).json({message : "Successfull login",token,login:true,username})
+        res.status(200).json({message : "Successfull login",token,login:true,user:usernameMatch})
         
     } catch (error) {
         res.status(500).json(error.message)
