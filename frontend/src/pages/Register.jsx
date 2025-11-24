@@ -31,10 +31,10 @@ function Register() {
         const submit = async()=>{
             try {
                 const response = await axios.post("http://localhost:3000/api/users/sign-up",
-                    {   name : fields.name,
-                        username:fields.username,
-                        password:fields.password,
-                        email:fields.email
+                    {   name : fields.name.trim(),
+                        username:fields.username.trim(),
+                        password:fields.password.trim(),
+                        email:fields.email.trim()
                     })
                 console.log(response);
                 setError(null)

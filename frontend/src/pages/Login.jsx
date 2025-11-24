@@ -23,8 +23,8 @@ function Login({setAuthorizedUser,setLoggedIn}) {
     const submit = async()=>{
       try {
         const response = await axios.post("http://localhost:3000/api/users/sign-in",{
-          username : fields.username,
-          password : fields.password
+          username : fields.username.trim(),
+          password : fields.password.trim()
         })
 
         console.log(response);
