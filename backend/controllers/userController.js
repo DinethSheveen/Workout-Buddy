@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js"
 import bcrypt from "bcrypt"
 import validator from "validator"
 import { generateToken } from "../config/jwt.js"
+import { Types } from "mongoose"
 
 // REGISTER
 export const signUp = async(req,res)=>{
@@ -81,10 +82,45 @@ export const signIn = async(req,res)=>{
 }
 
 // LOGOUT
-export const signOut = async(req,res)=>{
+export const signOut = async(_,res)=>{
     try {
         
     } catch (error) {
         res.status(500).json(error.message)
     }
+}
+
+// RETREIVE USER
+export const getUser = async(req,res)=>{
+    const userId = req.params.id
+
+    if(!userId){
+        return res.status(400).json({message : "Missing user Id"})
+    }
+
+    if(!Types.ObjectId.isValid(userId)){
+        return res.status(400).json({message : "Invalid user Id"})
+    }
+
+    try {
+        const user = await userModel.findById(userId)
+
+        if(!user){
+            return res.status(400).json({message:"No user with this id"})
+        }
+
+        res.status(200).json({message : "User retreived",user})
+
+    } catch (error) {
+        res.status(500).json({message:error})
+    }
+
+}
+
+// UPDATE USER
+export const updateUser = async(req,res)=>{
+    const {username,email,password,} = req.body
+
+
+
 }
