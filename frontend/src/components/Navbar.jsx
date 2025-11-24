@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import profileIcon from "../../public/logo.jpg"
+import { formatUsername } from "../utils/formatUsername"
 
-function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
+function Navbar({authorizedUser,loggedIn}) {
 
   const [name, setName] = useState(null)
 
@@ -11,24 +13,12 @@ function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
     const handleName = ()=>{
       if(loggedIn){
         const username = JSON.parse(authorizedUser).username
-        
-        const formatUsername = (username)=>{
-          const firsLetter = username.charAt(0)
-          const formattedName = firsLetter.toUpperCase() + username.slice(1)
-          return formattedName 
-        }
+      
         setName(formatUsername(username))
       }  
     }
     handleName()
   },[authorizedUser,loggedIn])
-
-  const handleLogout = ()=>{
-    setLoggedIn(false)
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-    navigate("/login")
-  }
 
   const handleNavigate = ()=>{
     if(loggedIn){
@@ -50,8 +40,10 @@ function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
             {
               loggedIn?
               <div className="flex flex-col gap-2">
-                <p className="text-transparent bg-linear-to-r from-gray-300 to-gray-400 bg-clip-text"> Hello {name}</p>
-                <p className="border border-cyan-400 text-cyan-400 text-center cursor-pointer px-2 py-1 hover:text-cyan-300 hover:border-cyan-300 active:text-cyan-200 active:border-cyan-200" onClick={handleLogout}>Log Out</p> 
+                <div className="flex items-center gap-1 cursor-pointer" onClick={()=>navigate("/profile")}>
+                  <p className="text-transparent bg-linear-to-r from-gray-300 to-gray-400 bg-clip-text"> {name}</p>
+                  <img src={profileIcon} className="w-10 rounded-full h-10"/>
+                </div>
               </div>
               :
             <p className="text-transparent bg-linear-to-r from-gray-300 to-gray-400 bg-clip-text">Create your own workout space</p>
