@@ -7,6 +7,7 @@ import Register from "./pages/Register"
 import Protected from "./utils/Protected"
 import { useState } from "react"
 import Profile from "./pages/Profile"
+import UpdateUser from "./components/UpdateUser"
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route element={<Protected authorizedUser={authorizedUser}/>}>
             <Route path="/" element={<Home authorizedUser={authorizedUser}/>}/>
             <Route path="/profile" element={<Profile setLoggedIn={setLoggedIn}/>}/>
+            <Route path="/update-profile" element={<UpdateUser/>}/>
             <Route path="/update-workout/:id" element={<UpdateWorkout/>}/>
           </Route>
         </Routes>
