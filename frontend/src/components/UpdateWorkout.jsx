@@ -69,17 +69,17 @@ function UpdateWorkout() {
             {/* WORKOUT */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="title" className='font-bold'>Workout</label>
-                <input type="text" id='title' placeholder='Workout type' className='text-white bg-gray-400 p-2 rounded-[5px]' value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
+                <input type="text" id='title' className='text-white bg-gray-400 p-2 rounded-[5px]' value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
             </div>
             {/* REPS */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="reps" className='font-bold'>Reps</label>
-                <input type="text" id='reps' placeholder='Number of reps' className='text-white bg-gray-400 p-2 rounded-[5px]' value={reps} onChange={(e)=>{setReps(e.target.value)}}/>
+                <input type="text" id='reps' className='text-white bg-gray-400 p-2 rounded-[5px]' value={reps} onChange={(e)=>{setReps(e.target.value)}}/>
             </div>
             {/* LOAD */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="load" className='font-bold'>Load (in kg)</label>
-                <input type="text" id='load' placeholder='Load in kg' className='text-white bg-gray-400 p-2 rounded-[5px]' value={load} onChange={(e)=>{setLoad(e.target.value)}}/>
+                <input type="text" id='load' className='text-white bg-gray-400 p-2 rounded-[5px]' value={load} onChange={(e)=>{setLoad(e.target.value)}}/>
             </div>
 
             <button className='bg-cyan-800 text-white mt-2 p-2 cursor-pointer hover:bg-cyan-700 active:bg-cyan-600 transition-all'>Edit Workout</button>
