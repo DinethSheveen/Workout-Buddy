@@ -25,7 +25,7 @@ function App() {
           <Route path="/login" element={<Login setAuthorizedUser={setAuthorizedUser} setLoggedIn={setLoggedIn}/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route element={<Protected authorizedUser={authorizedUser}/>}>
-            <Route path="/dashboard" element={<Home authorizedUser={authorizedUser}/>}/>
+            <Route path="/" element={<Home authorizedUser={authorizedUser}/>}/>
             <Route path="/update-workout/:id" element={<UpdateWorkout/>}/>
           </Route>
         </Routes>

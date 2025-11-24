@@ -38,7 +38,7 @@ function Login({setAuthorizedUser,setLoggedIn}) {
             setAuthorizedUser(localStorage.getItem("user"))
             setLoggedIn(true)
             // console.log(JSON.parse(localStorage.getItem("user")).username);
-            navigate("/dashboard")
+            navigate("/")
           },3000)
         }
         
