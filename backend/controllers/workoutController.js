@@ -24,7 +24,7 @@ export const getOneWorkout = async(req,res)=>{
 }
 
 // GET ALL WORKOUTS 
-export const getAllWorkouts = async(req,res)=>{
+export const getAllWorkoutsOfUser = async(req,res)=>{
     try {
         const userId = req.params.id
 

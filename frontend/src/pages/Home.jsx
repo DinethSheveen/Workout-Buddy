@@ -11,7 +11,7 @@ function Home() {
             try {
                 const id = JSON.parse(localStorage.getItem("user"))._id
 
-                const response = await fetch(`http://localhost:3000/api/workouts/${id}`)
+                const response = await fetch(`http://localhost:3000/api/workouts/user/${id}`)
 
                 if(!response.ok){
                     throw new Error("Couldn't fetch resources")
