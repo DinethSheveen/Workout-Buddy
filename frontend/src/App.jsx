@@ -18,7 +18,7 @@ function App() {
   
 
   return (
-    <>
+    <div className="bg-gray-500 min-h-screen">
       <BrowserRouter>
         <Navbar authorizedUser={authorizedUser} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
         <Routes>
@@ -30,7 +30,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 

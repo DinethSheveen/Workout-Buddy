@@ -58,7 +58,7 @@ function WorkoutForm() {
 
   return (
     <div className='w-[80vw] mx-auto mb-10 max-h-100 md:w-[40vw]'>
-        <form className='form flex flex-col gap-2 justify-around h-full shadow-2xl shadow-gray-500 rounded-[10px] bg-gray-300 py-4 px-2' onSubmit={handleSubmit}>
+        <form className='form flex flex-col gap-2 justify-around h-full shadow-2xl shadow-gray-500 rounded-[10px] bg-gray-300 p-4 mb-2' onSubmit={handleSubmit}>
             {/* WORKOUT */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="title" className='font-bold'>Workout</label>

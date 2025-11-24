@@ -53,7 +53,7 @@ function Login({setAuthorizedUser,setLoggedIn}) {
 
   return (
     <div className='pt-40 w-[80vw] mx-auto mb-10 max-h-100 md:w-[40vw]'>
-        <form className='form flex flex-col gap-5 justify-around h-full shadow-2xl shadow-gray-500 rounded-[10px] bg-gray-300 py-4 px-2' onSubmit={handleSubmit}>
+        <form className='form flex flex-col gap-5 justify-around h-full shadow-2xl shadow-gray-500 rounded-[10px] bg-gray-300 py-4 px-2 mb-2' onSubmit={handleSubmit}>
         <p className="text-3xl font-bold text-cyan-900">Login</p>
             {/* USERNAME */}
             <div className='flex flex-col gap-2'>
