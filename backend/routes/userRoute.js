@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { getUser, signIn, signOut, signUp, updateUser } from "../controllers/userController.js"
+import { getOneUser, signIn, signOut, signUp, updateUser } from "../controllers/userController.js"
 
 const userRouter = Router()
 
@@ -13,9 +13,9 @@ userRouter.post("/sign-in",signIn)
 userRouter.post("/sign-out",signOut)
 
 // RETREIVE USER
-userRouter.get("/:id",getUser)
+userRouter.get("/:id",getOneUser)
 
 // USERNAME UPDATE
-userRouter.put("/update-user",updateUser)
+userRouter.put("/update-user/:id",updateUser)
 
 export default userRouter

@@ -90,8 +90,8 @@ export const signOut = async(_,res)=>{
     }
 }
 
-// RETREIVE USER
-export const getUser = async(req,res)=>{
+// RETREIVE USER BY ID
+export const getOneUser = async(req,res)=>{
     const userId = req.params.id
 
     if(!userId){
@@ -114,13 +114,38 @@ export const getUser = async(req,res)=>{
     } catch (error) {
         res.status(500).json({message:error})
     }
-
 }
 
 // UPDATE USER
-export const updateUser = async(req,res)=>{
-    const {username,email,password,} = req.body
+// export const updateUser = async(req,res)=>{
+//     const {username,email,password} = req.body
+//     const userId = req.params.id
 
+//     if(!username || !email || !password){
+//         return res.status(400).json({message:"Please fill in all fields"})
+//     }
 
+//     try {
+//         const existingUsername = await userModel.findOne({username})
 
-}
+//         if(existingUsername){
+//             return res.status(400).json({message:"Username already exists. Choose another"})
+//         }
+
+//         const existingEmail = await userModel.findOne({email}) 
+
+//         if(existingEmail){
+//             return res.status(400).json({message:"Email address already exists"})
+//         }
+
+//         if(!validator.isStrongPassword(password)){
+//             return res.status(400).json({message:"Choose a strong password"})
+//         }
+
+        
+
+//     } catch (error) {
+//         res.status(500).json({message:error})
+//     }
+
+// }
