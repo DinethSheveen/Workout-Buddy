@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate, NavLink } from "react-router-dom"
-import profileIcon from "../../public/logo.jpg"
+import { HiMenuAlt3 } from "react-icons/hi";
 import { formatUsername } from "../utils/formatUsername"
+import profileIcon from "../../public/logo.jpg"
 
 function Navbar({authorizedUser,loggedIn}) {
 
@@ -45,23 +46,26 @@ function Navbar({authorizedUser,loggedIn}) {
               {
                 loggedIn?
                 
-                  <div className="flex items-center gap-5 cursor-pointer">
-                    <NavLink to={"/"} className={({isActive})=>
-                      isActive? 
-                        "text-[#696bcc] text-[20px]" : ""
-                    }>
-                      Home
-                    </NavLink>
-                    <NavLink to={"/my-workouts"} className={({isActive})=>
-                      isActive?
-                        "text-[#696bcc] text-[20px]" : ""
-                    }>
-                      My-Workouts
-                    </NavLink>
-                    <div className="flex items-center" onClick={()=>navigate("/profile")}>
-                      <p className="text-transparent bg-linear-to-r from-gray-300 to-gray-400 bg-clip-text"> {name}</p>
-                      <img src={profileIcon} className="w-10 rounded-full h-10"/>
+                  <div >
+                    <div className="hidden md:flex md:items-center md:gap-5 md:cursor-pointer">
+                      <NavLink to={"/"} className={({isActive})=>
+                        isActive? 
+                          "text-[#696bcc] text-[20px]" : ""
+                      }>
+                        Home
+                      </NavLink>
+                      <NavLink to={"/my-workouts"} className={({isActive})=>
+                        isActive?
+                          "text-[#696bcc] text-[20px]" : ""
+                      }>
+                        My-Workouts
+                      </NavLink>
+                      <div className="hidden md:flex md:items-center" onClick={()=>navigate("/profile")}>
+                        <p className="text-transparent bg-linear-to-r from-gray-300 to-gray-400 bg-clip-text"> {name}</p>
+                        <img src={profileIcon} className="w-10 rounded-full h-10"/>
+                      </div>
                     </div>
+                    <HiMenuAlt3 className="text-3xl md:hidden"/>
                   </div>
                 :
               <p className="text-transparent bg-linear-to-r from-gray-300 to-gray-400 bg-clip-text">Create your own workout space</p>
