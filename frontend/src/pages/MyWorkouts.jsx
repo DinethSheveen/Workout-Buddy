@@ -30,11 +30,14 @@ function MyWorkouts() {
   return (
     <div className='flex flex-col-reverse justify-between gap-5 px-4 pt-35 md:pt-30 md:flex-row 2xl:pt-50'>
         <div className='flex-1'>
-            {workouts && workouts.map((workout)=>{
+            {workouts.length>0 ? workouts.map((workout)=>{
                 return(
                     <Workout key={workout._id} workout={workout}/>
                 )
-            })}
+            })
+            :
+            <p className='font-bold text-gray-400 text-center md:p-10 2xl:text-5xl 2xl:p-10'>Your workout space is empty — kickstart your fitness journey by adding your first workout!🔥</p>
+            }
         </div>
         <WorkoutForm/>
     </div>
