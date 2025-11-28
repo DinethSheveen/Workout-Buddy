@@ -121,7 +121,16 @@ export const deleteWorkout = async(req,res)=>{
     }
 
     try {
-        const workout = await workoutModel.findByIdAndDelete({_id:workoutId})
+        const workout = await workoutModel.findById(workoutId)
+
+        // DELETING THE WORKOUT FROM THE USER WORKOUTS ARRAY
+        const userId = workout.user
+        const user = await userModel.findByIdAndUpdate({_id:userId},{
+            $pull : {workouts : workoutId}
+        })
+
+        await workoutModel.deleteOne({_id:workoutId})
+
         res.status(200).json("Workout Deleted")
     } catch (error) {
         res.status(500).json(error.message)
