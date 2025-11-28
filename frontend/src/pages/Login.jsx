@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom"
+import Button from "../components/Button";
 
 function Login({setAuthorizedUser,setLoggedIn}) {
 
@@ -53,23 +54,23 @@ function Login({setAuthorizedUser,setLoggedIn}) {
 
   return (
     <div className='pt-40 w-[80vw] mx-auto mb-10 max-h-100 md:w-[40vw]'>
-        <form className='form flex flex-col gap-5 justify-around h-full shadow-2xl shadow-gray-500 rounded-[10px] bg-gray-300 py-4 px-2 mb-2' onSubmit={handleSubmit}>
-        <p className="text-3xl font-bold text-cyan-900">Login</p>
+        <form className='form flex flex-col gap-5 justify-around h-full shadow-lg rounded-[10px] bg-[#1a1a1a] py-4 px-2 mb-2 text-white' onSubmit={handleSubmit}>
+        <p className="text-3xl font-bold text-cyan-300">Login</p>
             {/* USERNAME */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="title" className='font-bold'>Username</label>
-                <input type="text" id='title' placeholder='Username...' className='text-white bg-gray-400 p-2 rounded-[5px]' value={fields.username} onChange={handleUsername}/>
+                <input type="text" id='title' placeholder='Username...' className='text-white bg-[#2a2a2a] outline-none focus:ring-2 focus:ring-cyan-300 p-2 rounded-[5px]' value={fields.username} onChange={handleUsername}/>
             </div>
             
             {/* PASSWORD */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="reps" className='font-bold'>Password</label>
-                <input type="password" id='reps' placeholder='Password...' className='text-white bg-gray-400 p-2 rounded-[5px]' value={fields.password} onChange={handlePassword}/>
+                <input type="password" id='reps' placeholder='Password...' className='text-white bg-[#2a2a2a] outline-none focus:ring-2 focus:ring-cyan-300 p-2 rounded-[5px]' value={fields.password} onChange={handlePassword}/>
             </div>
 
-            <button className='bg-cyan-800 text-white mt-2 p-2 cursor-pointer hover:bg-cyan-700 active:bg-cyan-600 transition-all'>Login</button>
+            <Button buttonText="Login"/>
         
-            <p>Do not have an account? <Link to={"/register"}  className="text-cyan-800 font-bold">Register</Link></p>
+            <p>Do not have an account? <Link to={"/register"}  className="text-cyan-300 font-bold">Register</Link></p>
 
         </form>
         {error && error? <div className='bg-red-200 border-red-600 border-2 text-red-600 font-bold py-2 px-4 rounded-[5px]'>{error}!</div>:""}
