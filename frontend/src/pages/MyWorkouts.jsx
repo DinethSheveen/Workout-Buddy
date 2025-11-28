@@ -28,7 +28,7 @@ function MyWorkouts() {
     },[workouts])
 
   return (
-    <div className='flex flex-col-reverse justify-between gap-5 px-4 pt-35 md:pt-30 md:flex-row'>
+    <div className='flex flex-col-reverse justify-between gap-5 px-4 pt-35 md:pt-30 md:flex-row 2xl:pt-50'>
         <div className='flex-1'>
             {workouts && workouts.map((workout)=>{
                 return(
