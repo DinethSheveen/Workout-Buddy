@@ -1,11 +1,11 @@
-import { Link} from "react-router-dom"
+import { Link, useNavigate} from "react-router-dom"
 import profileIcon from "../../public/logo.jpg"
 import { formatUsername } from "../utils/formatUsername"
 import dayjs from "dayjs"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-function Profile() {
+function Profile({setLoggedIn,setAuthorizedUser}) {
 
     const [information, setInformation] = useState({
         userId:"",
@@ -14,6 +14,9 @@ function Profile() {
         email:"",
         workouts:[]
     })
+    const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
+    const navigate = useNavigate()
 
     const joinedDate = dayjs(JSON.parse(localStorage.getItem("user")).createdAt).format("DD MMMM YYYY")
     const userId = JSON.parse(localStorage.getItem("user"))._id
@@ -38,10 +41,26 @@ function Profile() {
         fetchUser()
     },[userId])
 
+    const handleAccountDelete = async()=>{
+        const userId = JSON.parse(localStorage.getItem("user"))._id
+
+        try {
+            const response = await axios.delete(`http://localhost:3000/api/users/${userId}`)
+
+            setSuccess(response.data.message);
+            
+            setLoggedIn(false)
+            setAuthorizedUser(null)
+            localStorage.removeItem("user")
+            localStorage.removeItem("token")
+            navigate("/login")
+        } catch (error) {
+            setError(error.data);
+        }
+    }
 
   return (
     <div className='pt-30 min-h-screen 2xl:pt-50'>
-
         <div className="flex flex-col sm:max-w-[70%] mx-auto px-8 md:px-0">
             {/* USERNAME AND IMAGE*/}
             <div className="flex flex-col items-center gap-2 bg-cyan-700 rounded-t-xl text-white py-4 2xl:text-4xl 2xl:gap-4 2xl:rounded-t-3xl">
@@ -69,8 +88,10 @@ function Profile() {
                     <Link to={"/my-workouts"} className="text-cyan-700 hover:text-cyan-600 cursor-pointer">Add Workout</Link>
                 </div>
                 {/* DELETE ACCOUNT */}
-                <Link to={"/"} className="bg-red-600 text-white py-3 text-center hover:bg-red-500 active:bg-red-300">Delete Account</Link>
+                <Link to={"/login"} onClick={handleAccountDelete} className="bg-red-600 text-white py-3 text-center hover:bg-red-500 active:bg-red-300">Delete Account</Link>
             </div>
+            {error && error? <div className='bg-red-200 border-red-600 border-2 text-red-600 font-bold py-2 px-4 rounded-[5px]'>{error}!</div>:""}
+            {success && success? <div className='bg-green-200 border-green-600 border-2 text-green-600 font-bold py-2 px-4 rounded-[5px]'>{success}!. Redirecting...</div>:""}
         </div> 
     </div>
   )

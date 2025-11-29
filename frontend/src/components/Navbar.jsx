@@ -35,12 +35,6 @@ function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
     handleName()
   },[authorizedUser,loggedIn])
 
-  const handleNavigate = ()=>{
-    if(loggedIn){
-      navigate("/login")
-    }
-  }
-
   const showSettings = ()=>{
     setDropdown(prevDropdown => !prevDropdown)
   }
@@ -54,13 +48,12 @@ function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
         <div className="2xl:mx-auto 2xl:max-w-[1400px] 2xl:py-5">
           <div className="flex justify-between gap-5 items-center font-bold border-2 border-gray-400 rounded-full py-2 px-4 2xl:px-8 2xl:text-4xl 2xl:border-4">
             {/* LEFT SECTION */}
-            <p className="text-2xl cursor-pointer md:text-3xl text-transparent bg-clip-text bg-linear-to-r from-[#696bcc] to-gray-500 2xl:py-3 2xl:text-5xl" onClick={handleNavigate}>Workout Buddy</p>
+            <p className="text-2xl cursor-pointer md:text-3xl text-transparent bg-clip-text bg-linear-to-r from-[#696bcc] to-gray-500 2xl:py-3 2xl:text-5xl" onClick={()=>{loggedIn?navigate("/"):""}}>Workout Buddy</p>
 
             {/* RIGHT SECTION */}
             <div>
               {
                 loggedIn?
-                
                   <div >
                     <div className="hidden md:flex md:items-center md:gap-5 md:cursor-pointer">
                       <NavLink to={"/"} className={({isActive})=>
@@ -98,7 +91,7 @@ function Navbar({authorizedUser,loggedIn,setLoggedIn}) {
         </div>
       </div>
       {/* SIDEBAR */}
-      <div className="sidebar absolute top-4 right-2 z-10 md:hidden">
+      <div className="sidebar absolute top-0 right-0 z-10 md:hidden">
         <div className={sidebar ? "flex flex-col min-h-[80vh] text-white bg-gray-900 text-center font-bold" : "hidden"}>
           <div className="mb-12">
             <IoMdCloseCircleOutline className="text-3xl absolute right-2 top-2" onClick={()=>{setSidebar(false)}}/>

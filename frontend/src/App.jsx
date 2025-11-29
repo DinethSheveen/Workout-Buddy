@@ -30,7 +30,7 @@ function App() {
           <Route element={<Protected authorizedUser={authorizedUser}/>}>
             <Route path="/" element={<Home/>}/>
             <Route path="/my-workouts" element={<MyWorkouts authorizedUser={authorizedUser}/>}/>
-            <Route path="/profile" element={<Profile setLoggedIn={setLoggedIn}/>}/>
+            <Route path="/profile" element={<Profile setLoggedIn={setLoggedIn} setAuthorizedUser={setAuthorizedUser}/>}/>
             <Route path="/update-profile" element={<UpdateUser/>}/>
             <Route path="/update-workout/:id" element={<UpdateWorkout/>}/>
           </Route>
