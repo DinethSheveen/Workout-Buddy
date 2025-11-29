@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { getOneUser, signIn, signOut, signUp, updateUser } from "../controllers/userController.js"
+import { deleteUser, getOneUser, signIn, signOut, signUp, updateUser } from "../controllers/userController.js"
 
 const userRouter = Router()
 
@@ -17,5 +17,8 @@ userRouter.get("/:id",getOneUser)
 
 // USERNAME UPDATE
 userRouter.put("/update-user/:id",updateUser)
+
+// DELETE USER 
+userRouter.delete("/:id",deleteUser)
 
 export default userRouter
