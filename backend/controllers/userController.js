@@ -3,6 +3,7 @@ import bcrypt from "bcrypt"
 import validator from "validator"
 import { generateToken } from "../config/jwt.js"
 import { Types } from "mongoose"
+import workoutModel from "../models/workoutModel.js"
 
 // REGISTER
 export const signUp = async(req,res)=>{
@@ -117,35 +118,47 @@ export const getOneUser = async(req,res)=>{
 }
 
 // UPDATE USER
-// export const updateUser = async(req,res)=>{
-//     const {username,email,password} = req.body
-//     const userId = req.params.id
+export const updateUser = async(req,res)=>{
+    const {username,email} = req.body
+    const userId = req.params.id
 
-//     if(!username || !email || !password){
-//         return res.status(400).json({message:"Please fill in all fields"})
-//     }
+    if(!username || !email){
+        return res.status(400).json({message:"Please fill in all fields"})
+    }
 
-//     try {
-//         const existingUsername = await userModel.findOne({username})
+    try {
+        const existingUsername = await userModel.findOne({username})
 
-//         if(existingUsername){
-//             return res.status(400).json({message:"Username already exists. Choose another"})
-//         }
+        if(existingUsername){
+            return res.status(400).json({message:"Username already exists. Choose another"})
+        }
 
-//         const existingEmail = await userModel.findOne({email}) 
+        const existingEmail = await userModel.findOne({email}) 
 
-//         if(existingEmail){
-//             return res.status(400).json({message:"Email address already exists"})
-//         }
+        if(existingEmail){
+            return res.status(400).json({message:"Email address already exists"})
+        }           
 
-//         if(!validator.isStrongPassword(password)){
-//             return res.status(400).json({message:"Choose a strong password"})
-//         }
+    } catch (error) {
+        res.status(500).json({message:error})
+    }
+}
 
-        
+// DELETE USER
+export const deleteUser = async(req,res)=>{
+    const userId = req.params.id
 
-//     } catch (error) {
-//         res.status(500).json({message:error})
-//     }
+    if(!Types.ObjectId.isValid(userId)){
+        return res.status(400).json({message:"Invalid user Id"}) 
+    }
 
-// }
+    try {
+        const user = await userModel.findByIdAndDelete(userId)
+        const workouts = await workoutModel.deleteMany({user : userId})
+
+        console.log(user);
+        res.status(200).json({message : "Account has been deleted successfully"})
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+}
