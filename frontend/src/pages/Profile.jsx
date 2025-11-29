@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link} from "react-router-dom"
 import profileIcon from "../../public/logo.jpg"
 import { formatUsername } from "../utils/formatUsername"
 import dayjs from "dayjs"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-function Profile({setLoggedIn}) {
+function Profile() {
 
     const [information, setInformation] = useState({
         userId:"",
@@ -14,14 +14,6 @@ function Profile({setLoggedIn}) {
         email:"",
         workouts:[]
     })
-    const navigate = useNavigate()
-
-    const handleLogout = ()=>{
-        setLoggedIn(false)
-        localStorage.removeItem("token")
-        localStorage.removeItem("user")
-        navigate("/login")
-    }
 
     const joinedDate = dayjs(JSON.parse(localStorage.getItem("user")).createdAt).format("DD MMMM YYYY")
     const userId = JSON.parse(localStorage.getItem("user"))._id
@@ -74,10 +66,8 @@ function Profile({setLoggedIn}) {
                 {/* TOTAL WORKOUTS */}
                 <div className="flex flex-col justify-between items-start md:flex-row md:items-center">
                     <p>Workout Count : {information.workouts}</p>
-                    <Link to={"/"} className="text-cyan-700 hover:text-cyan-600 cursor-pointer">Add Workout</Link>
+                    <Link to={"/my-workouts"} className="text-cyan-700 hover:text-cyan-600 cursor-pointer">Add Workout</Link>
                 </div>
-                {/* EMAIL */}
-                <p className="bg-cyan-700 text-white font-bold text-center cursor-pointer py-2 hover:bg-cyan-600 active:bg-cyan-500 2xl:py-8" onClick={handleLogout}>Log Out</p>
             </div>
         </div> 
     </div>
