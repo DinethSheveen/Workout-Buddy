@@ -30,7 +30,7 @@ function MyWorkouts() {
   return (
     <div className='flex flex-col-reverse justify-between gap-5 px-4 pt-35 md:pt-30 md:flex-row 2xl:pt-50'>
         <div className='flex-1'>
-            {workouts.length>0 ? workouts.map((workout)=>{
+            {workouts && workouts.length>0 ? workouts.map((workout)=>{
                 return(
                     <Workout key={workout._id} workout={workout}/>
                 )
