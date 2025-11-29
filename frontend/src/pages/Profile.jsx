@@ -68,6 +68,8 @@ function Profile() {
                     <p>Workout Count : {information.workouts}</p>
                     <Link to={"/my-workouts"} className="text-cyan-700 hover:text-cyan-600 cursor-pointer">Add Workout</Link>
                 </div>
+                {/* DELETE ACCOUNT */}
+                <Link to={"/"} className="bg-red-600 text-white py-3 text-center hover:bg-red-500 active:bg-red-300">Delete Account</Link>
             </div>
         </div> 
     </div>
