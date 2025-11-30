@@ -81,7 +81,7 @@ function Register() {
             {/* PASSWORD */}
             <div className='flex flex-col gap-2'>
                 <label htmlFor="reps" className='font-bold'>Password</label>
-                <input type="text" id='reps' placeholder='Password...' className='text-white bg-[#2a2a2a] p-2 rounded-[5px] outline-none focus:ring-2 focus:ring-cyan-400' value={fields.password} onChange={handlePassword}/>
+                <input type="password" id='reps' placeholder='Password...' className='text-white bg-[#2a2a2a] p-2 rounded-[5px] outline-none focus:ring-2 focus:ring-cyan-400' value={fields.password} onChange={handlePassword}/>
             </div>
 
             <Button buttonText="Register"/>
