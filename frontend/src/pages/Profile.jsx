@@ -42,8 +42,6 @@ function Profile({setLoggedIn,setAuthorizedUser}) {
     },[userId])
 
     const handleAccountDelete = async()=>{
-        const userId = JSON.parse(localStorage.getItem("user"))._id
-
         try {
             const response = await axios.delete(`http://localhost:3000/api/users/${userId}`)
 
@@ -73,20 +71,15 @@ function Profile({setLoggedIn,setAuthorizedUser}) {
                 {/* USER ID */}
                 <p>User Id : {information.userId}</p>
                 {/* EMAIL */}
-                <div className="flex flex-col justify-between items-start md:flex-row md:items-center">
-                    <p>Email : {information.email}</p>
-                    <Link to={"/update-profile"} className="text-cyan-700 hover:text-cyan-500 cursor-pointer">Change Email</Link>
-                </div>
+                <p>Email : {information.email}</p>
                 {/* USERNAME */}
-                <div className="flex flex-col justify-between items-start md:flex-row md:items-center">
-                    <p>Username : {information.username}</p>
-                    <Link to={"/update-profile"} className="text-cyan-700 hover:text-cyan-500 cursor-pointer">Change Username</Link>
-                </div>
+                <p>Username : {information.username}</p>
                 {/* TOTAL WORKOUTS */}
-                <div className="flex flex-col justify-between items-start md:flex-row md:items-center">
-                    <p>Workout Count : {information.workouts}</p>
-                    <Link to={"/my-workouts"} className="text-cyan-700 hover:text-cyan-600 cursor-pointer">Add Workout</Link>
-                </div>
+                <p>Workout Count : {information.workouts}</p>
+
+                {/* UPDATE PROFILE */}
+                <Link to={`/update-profile/${userId}`} className="bg-cyan-600 text-white w-fit px-4 py-2 hover:bg-cyan-700 active:bg-cyan-900">Update Profile</Link>
+
                 {/* DELETE ACCOUNT */}
                 <Link to={"/login"} onClick={handleAccountDelete} className="bg-red-600 text-white py-3 text-center hover:bg-red-500 active:bg-red-300">Delete Account</Link>
             </div>
