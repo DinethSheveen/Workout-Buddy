@@ -126,18 +126,29 @@ export const updateUser = async(req,res)=>{
         return res.status(400).json({message:"Please fill in all fields"})
     }
 
+    if(!validator.isEmail(email)){
+        return res.status(400).json({message:"Please enter a valid email"})
+    }
+
+    if(!Types.ObjectId.isValid(userId)){
+        return res.status(400).json({message:"Invalid Id"})
+    }
+
     try {
-        const existingUsername = await userModel.findOne({username})
+        const existingUsername = await userModel.findOne({username,_id:{$ne:userId}})
 
         if(existingUsername){
             return res.status(400).json({message:"Username already exists. Choose another"})
         }
 
-        const existingEmail = await userModel.findOne({email}) 
+        const existingEmail = await userModel.findOne({email,_id:{$ne:userId}}) 
 
         if(existingEmail){
             return res.status(400).json({message:"Email address already exists"})
-        }           
+        }         
+        
+        const updatedUser = await userModel.findByIdAndUpdate({_id:userId},{username,email})
+        res.status(200).json({message : "Profile updated successfully"})
 
     } catch (error) {
         res.status(500).json({message:error})
